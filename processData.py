@@ -1,3 +1,4 @@
+import sys
 import nltk
 from nltk.stem import WordNetLemmatizer
 from keras.preprocessing.text import Tokenizer
@@ -5,6 +6,7 @@ import pandas as pd
 import pickle
 from tqdm import tqdm
 from collections import defaultdict
+
 
 # This function is designed to take the raw csv file from the
 # sentiment140 dataset and put it in the format:
@@ -43,7 +45,6 @@ def data_to_rnn_input(filename, debug=False):
     unique_words = list(filter(lambda x:(freq_table[x]>20), unique_words))
     unique_words = list(filter(lambda x: filter_set(x),unique_words))
     print("Length of input layer: ",len(unique_words))
-    print(sorted(unique_words))
     tokenizer = Tokenizer()
     tokenizer.fit_on_texts(unique_words)
     encoded = tokenizer.texts_to_sequences(df[df.columns[1]])
@@ -102,7 +103,8 @@ def filter_set(word):
 
 #filename = "test_training.csv"
 #filename = "testdata.manual.2009.06.14.csv"
-filename = "half.csv"
+#filename = "10thou.csv"
 processed_data = "processed_data.csv"
+filename = sys.argv[1]
 process_raw_data(filename)
 data_to_rnn_input(processed_data)

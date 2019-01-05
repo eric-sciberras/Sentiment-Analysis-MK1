@@ -6,6 +6,9 @@ import pandas as pd
 from keras import Sequential
 from keras.layers import Embedding, LSTM, Dense, Dropout
 import pickle
+from keras.callbacks import ModelCheckpoint
+from keras.models import load_model
+import sys
 
 
 
@@ -37,8 +40,8 @@ def neuralnet(filename):
 
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-    batch_size = 100
-    num_epochs = 30
+    batch_size = 200
+    num_epochs = 15
 
     X_valid, y_valid = X_train[:batch_size], Y_train[:batch_size]
     X_train2, y_train2 = X_train[batch_size:], Y_train[batch_size:]
@@ -63,36 +66,31 @@ def neuralnet(filename):
 
 def play_with_model():
     max_words = 16
-
     with open( "tokeniser.pickle", "rb" ) as input1:
         tokenizer = pickle.load(input1)
+    model = load_model("my_model.h5")
+    while True:
+        sentence = [input("Enter Sentence: ")]
+        encoded = tokenizer.texts_to_sequences(sentence)
+        print(encoded)
+        encoded = sequence.pad_sequences(encoded, maxlen=max_words)
 
-    with open( "model.pickle", "rb" ) as input2:
-        model = pickle.load(input2)
+        #print("Original Text", sys.argv[1])
+        #print("encoded: ",encoded)
+        #print("Prediction: ",model.predict(encoded))
+        # while True:
+        #     inp = input('Enter A Sentence: ')
+        #     encoded = tokenizer.texts_to_sequences(inp)
+        prediction = model.predict(encoded).tolist()
 
-    sentence = [sys.argv[1]]
-    encoded = tokenizer.texts_to_sequences(sentence)
-    print(encoded)
-    encoded = sequence.pad_sequences(encoded, maxlen=max_words)
-
-    #print("Original Text", sys.argv[1])
-    #print("encoded: ",encoded)
-    #print("Prediction: ",model.predict(encoded))
-    # while True:
-    #     inp = input('Enter A Sentence: ')
-    #     encoded = tokenizer.texts_to_sequences(inp)
-    prediction = model.predict(encoded).tolist()
-
-    max_index = prediction.index(max(prediction))
-    if max_index == 0:
-        print("Positive")
-    elif max_index == 1:
-        print("Neutral")
-    elif max_index == 2:
-        print("Negative")
-    else:
-        print("ERROR")
-    return 0
+        max_index = prediction.index(max(prediction))
+        if max_index == 0:
+            print("Positive")
+        elif max_index == 1:
+            print("Neutral")
+        elif max_index == 2:
+            print("Negative")
+        else:
+            print("ERROR")
 
 neuralnet("processed_data_2.csv")
-play_with_model()
