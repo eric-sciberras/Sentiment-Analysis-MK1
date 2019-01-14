@@ -18,10 +18,12 @@ def play_with_model(model):
 
         prediction = model.predict(encoded).tolist()
 
-        max_index = prediction[0].index(max(prediction[0]))
-        if max_index == 0:
+        print("Prediction: ",prediction)
+        value = float(prediction[0][0])
+        print(value)
+        if value >= 0.5:
             print("Positive")
-        elif max_index == 1:
+        elif value < 0.5:
             print("Negative")
         else:
             print("ERROR")
