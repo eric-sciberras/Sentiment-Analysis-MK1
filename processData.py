@@ -17,7 +17,7 @@ def process_raw_data(filename):
     print("Processing Raw Data")
     df = pd.read_csv(filename,header=None,encoding='latin-1')
     df.drop(df.columns[[1,2,3,4]], axis=1, inplace=True)
-    df[df.columns[0]] = df[df.columns[0]].map({0:[1,0], 4: [0,1]})
+    df[df.columns[0]] = df[df.columns[0]].map({0:[0], 4: [1]})
     with open("processed_data.csv","w") as output:
         df.to_csv(output,index=False,header=None)
     print("Processing Raw Data: Finished")
@@ -101,10 +101,7 @@ def filter_set(word):
            len(word)<11 and
            str(nltk.pos_tag([word])[0][1]) not in useless_word_types)
 
-#filename = "test_training.csv"
-#filename = "testdata.manual.2009.06.14.csv"
-#filename = "10thou.csv"
-processed_data = "processed_data.csv"
 filename = sys.argv[1]
+processed_data = "processed_data.csv"
 process_raw_data(filename)
 data_to_rnn_input(processed_data)
