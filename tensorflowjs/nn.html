@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.14.1/dist/tf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gauge.js/1.3.6/gauge.min.js"></script>
+    <!--    only required when dict.json file is local-->
+    <script type="text/javascript" src="dict.json"></script>
+    <meta charset="UTF-8">
+    <title>LSTM Neural Network</title>
+  </head>
+  <body>
+
+    Sentence:<br>
+    <input type="text" class="form-control" placeholder="Enter a sentence (16 words max)" id="userinput" name="sentence">
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary" onclick="runmodel(document.getElementById('userinput').value)" id="sendinput">Submit</button>
+    <br>
+    <br>
+    <p id="answer"></p>
+    <p id="sentence"></p>
+    <canvas id="sentiment">
+    </canvas>
+
+  </body>
+  <script src="./nn.js"></script>
+</html>
