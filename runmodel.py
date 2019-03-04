@@ -5,9 +5,10 @@ import pickle
 from keras.models import load_model
 import sys
 
+
 def play_with_model(model):
     max_words = 16
-    with open( "tokeniser.pickle", "rb" ) as input1:
+    with open("tokeniser.pickle", "rb") as input1:
         tokenizer = pickle.load(input1)
     model = load_model(model)
     while True:
@@ -18,7 +19,7 @@ def play_with_model(model):
 
         prediction = model.predict(encoded).tolist()
 
-        print("Prediction: ",prediction)
+        print("Prediction: ", prediction)
         value = float(prediction[0][0])
         print(value)
         if value >= 0.5:
@@ -27,6 +28,7 @@ def play_with_model(model):
             print("Negative")
         else:
             print("ERROR")
+
 
 model = sys.argv[1]
 play_with_model(model)
