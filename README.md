@@ -36,9 +36,7 @@ A sentiment analysis project based on [Sentiment140](http://help.sentiment140.co
    1. Install [tfjs-converter](https://github.com/tensorflow/tfjs-converter)  
       `pip install tensorflowjs` 
    2. Convert the keras model to TF.js Layers format  
-     `tensorflowjs_converter --input_format keras \
-                       path/to/my_model.h5 \
-                       path/to/tfjs_target_dir`
+     `tensorflowjs_converter --input_format keras path/to/my_model.h5 path/to/tfjs_target_dir`
    3. Run  
      `dictionary2json ./tokeniser.pickle ./dict.json`  
       To turn the dictionary pickle to json.
