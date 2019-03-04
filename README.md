@@ -24,7 +24,7 @@ A sentiment analysis project based on [Sentiment140](http://help.sentiment140.co
    + Replace your `model.hdf5` with the one contained in `html` folder and open `nn.html` (Recommended) OR
    + Run `python3 runmodel /path/to/model.hdf5` 
 
-## Possible Improvements For MK-2
+## Possible Improvements For MK2
 
 + Use more or better datasets (create my own ???)
 + Research Word2vec and its possible advantages 
