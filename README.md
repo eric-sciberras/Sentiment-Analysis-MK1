@@ -1,5 +1,5 @@
 # Sentiment-Analysis-MK1
-A sentiment analysis project based on [Sentiment140](http://help.sentiment140.com/for-students) training data. This First attempt utilises some basic rules for creating quality input data from the raw data alongside a LSTM neural network.
+A sentiment analysis project based on [Sentiment140](http://help.sentiment140.com/for-students) training data. This First attempt utilises some basic rules for creating quality input data from the raw data which is fed into a LSTM neural network.
 
 ## Getting Started
 
